@@ -1,21 +1,25 @@
 fn main() {
     let mut elements: [i32; 5] = [1, 4, 0, -32, 10];
     let n = 5;
+    sort(&mut elements, n);
+    dbg!(elements);
+}
+
+fn sort(list: &mut [i32], n: usize) {
     for i in 1..n {
-        let key = elements[i];
+        let key = list[i];
         let mut j = i - 1;
         loop {
-            if key >= elements[j] {
+            if key >= list[j] {
                 j += 1;
                 break;
             }
-            elements[j + 1] = elements[j];
+            list[j + 1] = list[j];
             if j == 0 {
                 break;
             };
             j -= 1;
         }
-        elements[j] = key;
+        list[j] = key;
     }
-    dbg!(elements);
 }
