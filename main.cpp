@@ -1,4 +1,9 @@
 #include <iostream>
+#include <cstdlib>
+#include <sys/time.h>
+#include <chrono>
+#include <ctime>
+
 using namespace std;
 
 struct node {
@@ -16,7 +21,16 @@ void print_linked_list(node* head) {
     cout <<"\n";
 }
 
+long date_time_in_ms() {
+    return chrono::duration_cast<chrono::milliseconds>(chrono::system_clock::now().time_since_epoch()).count();
+}
+
 int main() {
+    int random = rand() % 1000;
+    cout << random << endl;
+}
+
+int main232() {
     int array[9] = {100, 80, 81, 2, 99, 23, 3, -2, -1};
     int n = 9;
     int l = 0, r = 0;
