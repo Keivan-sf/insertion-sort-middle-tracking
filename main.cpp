@@ -24,29 +24,26 @@ int main() {
     last->value = array[0];
     for(int i =1; i<n; i++) {
         int target = array[i];
-        cout << "target is: " << target << "\n";
         node *newNode = new(node);
         newNode -> value = target;
         newNode -> prev = last;
         last -> next = newNode;
         node *current = last;
+        node *placement = head;
         last = newNode;
-        cout << "first: " <<current << "and:" << (current != NULL) << " second: " << (current -> value > target) << "\n";
-        while(current -> value > target) {
-            current -> next -> value = current -> value;
-            if(!(current -> prev)) break;
-            current = current -> prev;
-            current -> next -> value = current -> value;
-            if(!(current -> prev)) break;
+        while(true) {
+            if(current -> value <= target) {
+                placement = current -> next;
+                break;
+            } else if(!(current -> prev)) {
+                current -> next -> value = current -> value;
+                break;
+            } else {
+                current -> next -> value = current -> value;
+                current = current -> prev;
+            }
         }
-        print_linked_list(head);
-        if(current->prev) {
-            current -> next -> value = target;
-        } else {
-            current -> value = target;
-        }
-
-        cout << "change happened" << "\n";
+        placement->value = target;
         print_linked_list(head);
     }
     print_linked_list(head);
