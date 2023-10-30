@@ -25,22 +25,15 @@ long date_time_in_ms() {
     return chrono::duration_cast<chrono::milliseconds>(chrono::system_clock::now().time_since_epoch()).count();
 }
 
-int main() {
-    int random = rand() % 1000;
-    cout << random << endl;
-}
-
-int main232() {
-    int array[9] = {100, 80, 81, 2, 99, 23, 3, -2, -1};
-    int n = 9;
+int insertion_sort_with_middle_tracking(int *array, int n) {
     int l = 0, r = 0;
     node *last = new(node);
     node *head = last;
     node *mid = last;
 
-    last->value = array[0];
+    last->value = *array;
     for(int i =1; i<n; i++) {
-        int target = array[i];
+        int target = *(array + i);
         node *newNode = new(node);
         newNode -> value = target;
         if (target > mid->value) {
@@ -86,16 +79,12 @@ int main232() {
             if(l%2 == 0 && mid->prev) mid = mid ->prev;
             l++;
         }
-        print_linked_list(head);
-        cout << "And the middle is = " << mid->value << "\n";
     }
     print_linked_list(head);
     return 0;
 }
 
-int main_reversed() {
-    int array[5] = {99, 23, 3, -2, -1};
-    int n = 5;
+int insertion_sort_reversed(int *array, int n) {
     node *last = new(node);
     node *head = last;
     last->value = array[0];
@@ -121,15 +110,12 @@ int main_reversed() {
             }
         }
         placement->value = target;
-        print_linked_list(head);
     }
     print_linked_list(head);
     return 0;
 }
 
-int main_linked_list() {
-    int array[5] = {99, 23, 3, -2, -1};
-    int n = 5;
+int insertion_sort_with_linked_list(int *array, int n) {
     node *last = new(node);
     node *head = last;
     last->value = array[0];
@@ -155,15 +141,12 @@ int main_linked_list() {
             }
         }
         placement->value = target;
-        print_linked_list(head);
     }
     print_linked_list(head);
     return 0;
 }
 
-int main2() {
-    int array[5] = {99, 23, 3, -2, 5};
-    int n = 5;
+int insertion_sort(int *array, int n) {
     for (int i = 1; i<5; i++) {
         int key = array[i];
         int j = i - 1;
@@ -177,5 +160,13 @@ int main2() {
     for (int i = 0; i < 5; i++) {
         cout<< array[i] << " ";
     }
+    return 0;
+}
+
+int main() {
+    int array[10] = {8, 100, 80, 81, 2, 99, 23, 3, -2, -1};
+    int n = 10;
+    insertion_sort_with_middle_tracking(array, n);
+    int random = rand() % 1000;
     return 0;
 }
