@@ -142,6 +142,41 @@ int insertion_sort_with_linked_list(int *array, int n) {
     return 0;
 }
 
+int insertion_sort_middle_tracking_array(int *array, int n) {
+    int helper[n*2 - 1];
+    int start = n - 1;
+    int end = n - 1;
+    helper[start] = array[0];
+    for (int i = 1; i<n; i++) {
+        int key = array[i];
+        if(key > array[(start + end) / 2]) {
+            helper[end + 1] = key;
+            int j = end;
+            end = end + 1;
+            while(j > start - 1 && helper[j] > key) {
+                helper[j + 1] = helper[j];
+                j--;
+            }
+            helper[j+1] = key;
+        } else {
+            helper[start - 1] = key;
+            int j = start;
+            start = start - 1;
+            while(j < end + 1 && helper[j] < key) {
+                helper[j - 1] = helper[j];
+                j++;
+            }
+            helper[j-1] = key;
+        }
+
+    }
+    /* for(int i = 0; i < 2*n - 1; i++) { */
+    /*     cout << helper[i] << ", "; */
+    /* } */
+    /* cout << endl; */
+    return 0;
+}
+
 int insertion_sort_out_of_place(int *array, int n) {
     int output_array[n];
     for (int i = 1; i<n; i++) {
@@ -201,9 +236,9 @@ int main() {
     cout << "middle tracking finished in: " << end - start << " ms" << endl;
 
     start = date_time_in_ms();
-    insertion_sort_with_linked_list(array, n);
+    insertion_sort_middle_tracking_array(array, n);
     end = date_time_in_ms();
-    cout << "insertion sort with linked list finished in: " << end - start << " ms" << endl;
+    cout << "middle tracking insertion sort with array finished in: " << end - start << " ms" << endl;
 
     start = date_time_in_ms();
     insertion_sort_out_of_place(array, n);
