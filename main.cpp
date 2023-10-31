@@ -158,7 +158,7 @@ int insertion_sort_out_of_place(int *array, int n) {
 }
 
 int insertion_sort(int *array, int n) {
-    for (int i = 1; i<5; i++) {
+    for (int i = 1; i<n; i++) {
         int key = array[i];
         int j = i - 1;
         while (j > -1 && array[j] > key) {
@@ -167,7 +167,7 @@ int insertion_sort(int *array, int n) {
         }
         array[j + 1] = key;
     }
-    /* for (int i = 0; i < 5; i++) { */
+    /* for (int i = 0; i < n; i++) { */
     /*     cout<< array[i] << " "; */
     /* } */
     return 0;
