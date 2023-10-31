@@ -21,10 +21,6 @@ void print_linked_list(node* head) {
     cout <<"\n";
 }
 
-long date_time_in_ms() {
-    return chrono::duration_cast<chrono::milliseconds>(chrono::system_clock::now().time_since_epoch()).count();
-}
-
 int insertion_sort_with_middle_tracking(int *array, int n) {
     int l = 0, r = 0;
     node *last = new(node);
@@ -163,10 +159,27 @@ int insertion_sort(int *array, int n) {
     return 0;
 }
 
+long date_time_in_ms() {
+    return chrono::duration_cast<chrono::milliseconds>(chrono::system_clock::now().time_since_epoch()).count();
+}
+
+void populate_with_random_numbers(int *array, int n, int min, int max) {
+    for(int i = 0; i<n; i++) {
+        *(array + i) = min + rand() % max;
+    }
+}
+
 int main() {
-    int array[10] = {8, 100, 80, 81, 2, 99, 23, 3, -2, -1};
-    int n = 10;
-    insertion_sort_with_middle_tracking(array, n);
-    int random = rand() % 1000;
+    int array[100];
+    int n = 100;
+    srand(date_time_in_ms());
+    populate_with_random_numbers(array, n, 1, 100);
+    for(int i = 0; i<100; i++) {
+        cout << array[i] << endl;
+    }
+    /* int array[10] = {8, 100, 80, 81, 2, 99, 23, 3, -2, -1}; */
+    /* int n = 10; */
+    /* insertion_sort_with_middle_tracking(array, n); */
+    /* int random = rand() % 1000; */
     return 0;
 }
