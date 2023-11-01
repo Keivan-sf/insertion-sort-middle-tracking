@@ -143,30 +143,52 @@ int insertion_sort_with_linked_list(int *array, int n) {
 }
 
 int insertion_sort_middle_tracking_array(int *array, int n) {
+    long steps = 0;
     int helper[n*2 - 1];
     int start = n - 1;
+    steps++;
     int end = n - 1;
+    steps++;
     helper[start] = array[0];
+    steps++;
+    steps++;
     for (int i = 1; i<n; i++) {
         int key = array[i];
+        steps++;
+        steps++;
         if(key > array[(start + end) / 2]) {
             helper[end + 1] = key;
+            steps+= 2;
             int j = end;
+            steps++;
             end = end + 1;
+            steps+= 2;
             while(j > start - 1 && helper[j] > key) {
+                steps++;
                 helper[j + 1] = helper[j];
+                steps+=2;
                 j--;
+                steps++;
             }
             helper[j+1] = key;
+            steps+=2;
         } else {
+            steps++;
             helper[start - 1] = key;
+            steps+=2;
             int j = start;
+            steps++;
             start = start - 1;
+            steps+=2;
             while(j < end + 1 && helper[j] < key) {
+                steps++;
                 helper[j - 1] = helper[j];
+                steps+=2;
                 j++;
+                steps++;
             }
             helper[j-1] = key;
+            steps+=2;
         }
 
     }
@@ -174,7 +196,7 @@ int insertion_sort_middle_tracking_array(int *array, int n) {
     /*     cout << helper[i] << ", "; */
     /* } */
     /* cout << endl; */
-    return 0;
+    return steps;
 }
 
 int insertion_sort_out_of_place(int *array, int n) {
@@ -193,19 +215,28 @@ int insertion_sort_out_of_place(int *array, int n) {
 }
 
 int insertion_sort(int *array, int n) {
+    int steps = 0;
+    steps++;
+    steps++;
     for (int i = 1; i<n; i++) {
         int key = array[i];
+        steps++;
         int j = i - 1;
+        steps += 2;
         while (j > -1 && array[j] > key) {
+            steps++;
             array[j + 1] = array[j];
+            steps += 2;
             j--;
+            steps++;
         }
         array[j + 1] = key;
+        steps += 2;
     }
     /* for (int i = 0; i < n; i++) { */
     /*     cout<< array[i] << " "; */
     /* } */
-    return 0;
+    return steps;
 }
 
 long date_time_in_ms() {
@@ -214,36 +245,55 @@ long date_time_in_ms() {
 
 void populate_with_random_numbers(int *array, int n, int min, int max) {
     for(int i = 0; i<n; i++) {
-        *(array + i) = min + rand() % max;
+        int random = min + rand() % max;
+        array[i] = random;
     }
 }
 
 int main() {
-    int array[200000];
-    int n = 200000;
+    int array[20];
+    int n = 20;
     int start, end;
     srand(date_time_in_ms() % 11);
 
     start =date_time_in_ms();
-    populate_with_random_numbers(array, n/2, 1, 1000000);
-    populate_with_random_numbers(array + n/2, n/2, 1000001, 9999999);
+    populate_with_random_numbers(array + n/2, n/2, 1, 1000000);
+    cout << "populated\n";
+    for(int i =n/2; i< n ; i++) {
+        cout << *(array + i) << endl;
+    }
+    insertion_sort(array + n/2, n/2);
+    cout << "\nsorted\n";
+    for(int i =n/2; i< n ; i++) {
+        cout << *(array + i) << endl;
+    }
+    populate_with_random_numbers(array, n/2, 1000001, 9999999);
+    cout << "\npopulated\n";
+    for(int i =0; i< n/2 ; i++) {
+        cout << *(array + i) << endl;
+    }
+    insertion_sort(array, n/2);
+    cout << "\nsorted\n";
+    for(int i =0; i< n ; i++) {
+        cout << *(array + i) << endl;
+    }
     end = date_time_in_ms();
     cout << "random number geneartion finished in: " << end - start << " ms" << endl;
 
-    start = date_time_in_ms();
-    insertion_sort_with_middle_tracking(array, n);
-    end = date_time_in_ms();
-    cout << "middle tracking finished in: " << end - start << " ms" << endl;
+    /* start = date_time_in_ms(); */
+    /* insertion_sort_with_middle_tracking(array, n); */
+    /* end = date_time_in_ms(); */
+    /* cout << "middle tracking finished in: " << end - start << " ms" << endl; */
 
     start = date_time_in_ms();
-    insertion_sort_middle_tracking_array(array, n);
+    int steps = insertion_sort_middle_tracking_array(array, n);
     end = date_time_in_ms();
-    cout << "middle tracking insertion sort with array finished in: " << end - start << " ms" << endl;
+    cout << "middle tracking insertion sort with array finished in: " << end - start << " ms" << endl << "steps: " << steps << endl;
 
     start = date_time_in_ms();
-    insertion_sort_out_of_place(array, n);
+    steps = insertion_sort(array, n);
     end = date_time_in_ms();
-    cout << "out-of-place insertion sort finished in: " << end - start << " ms" << endl;
+    cout << "normal insertion sort finished in: " << end - start << " ms" << endl<< "steps: " << steps << endl;
 
     /* int array[10] = {8, 100, 80, 81, 2, 99, 23, 3, -2, -1}; */
     /* int n = 10; */
