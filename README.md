@@ -7,10 +7,22 @@ So for example if we have doubly-linked-list of the following sorted elements: `
 
 This saves a couple of steps when `n` is larger.
 
-A few tips about this algo:
+A few tips about this algorithm:
 
 - The algorithm is no longer in-place since we are adding a linked list
 
 - Converting linked list to array is fairly cheap time-wise, so we could easily get an array output if memory is not an issue
 
 - Reversed/nearly-reversed lists are also a good scenario for this algorithm whereas in insertion-sort we had to tolerate `n^2`
+
+- Amount of steps in each iteration is increased so it will perform slightly worse in case of sorted/nearly-sorted arrays.
+
+I've run some clumsy benchmark on my pc with the n of `300,000`
+
+| Input/time     | Normal insertion-sort | With middle-tracking | Middle-tracking + converting to array |
+| -------------- | --------------------- | -------------------- | ------------------------------------- |
+| Reversed array | 107041 ms             | 13 ms                | 14 ms                                 |
+| Sorted array   | 1 ms                  | 11 ms                | 12 ms                                 |
+| Random array   | 6041 ms               | 6613 ms              | 6614 ms                               |
+
+Notice that there's not much of a difference if the inputs are random.
