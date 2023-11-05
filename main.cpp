@@ -37,37 +37,6 @@ node* insertion_sort_with_linked_list(int *array, int n) {
     return head;
 }
 
-int* insertion_sort_middle_tracking_array(int *array, int n) {
-    int* helper = new int[n*2 - 1];
-    int start = n - 1;
-    int end = n - 1;
-    helper[start] = array[0];
-    for (int i = 1; i<n; i++) {
-        int key = array[i];
-        if(key > array[(start + end) / 2]) {
-            helper[end + 1] = key;
-            int j = end;
-            end = end + 1;
-            while(j > start - 1 && helper[j] > key) {
-                helper[j + 1] = helper[j];
-                j--;
-            }
-            helper[j+1] = key;
-        } else {
-            helper[start - 1] = key;
-            int j = start;
-            start = start - 1;
-            while(j < end + 1 && helper[j] < key) {
-                helper[j - 1] = helper[j];
-                j++;
-            }
-            helper[j-1] = key;
-        }
-
-    }
-    return helper;
-}
-
 int insertion_sort_out_of_place(int *array, int n) {
     int output_array[n];
     for (int i = 1; i<n; i++) {
