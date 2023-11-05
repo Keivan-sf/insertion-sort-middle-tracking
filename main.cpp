@@ -35,15 +35,15 @@ void populate_with_perfect_insertionsort_input(int *array, int n) {
 }
 
 int main() {
-    int array[100000];
-    int n = 100000;
+    int array[300000];
+    int n = 300000;
     int start, end;
     srand(date_time_in_ms() % 11);
 
     start = date_time_in_ms();
-    //populate_with_perfect_middletracking_input(array, n);
-    populate_with_perfect_insertionsort_input(array,n);
-    //populate_with_random_numbers(array, n, 0, 1000000);
+    populate_with_perfect_middletracking_input(array, n);
+    /* populate_with_perfect_insertionsort_input(array,n); */
+    /* populate_with_random_numbers(array, n, 0, 1000000); */
     end = date_time_in_ms();
     cout << "random number geneartion finished in: " << end - start << " ms" << endl;
 
