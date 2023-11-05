@@ -10,5 +10,6 @@ struct node {
 };
 
 void print_linked_list(node* head);
+int* convert_linked_list_to_array(node* head, int n);
 
 #endif
