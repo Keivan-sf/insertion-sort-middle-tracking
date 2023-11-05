@@ -1,20 +1,6 @@
 #include <iostream>
+#include "linkedlist.h"
 using namespace::std;
-
-struct node {
-    int value;
-    node *next = NULL;
-    node *prev = NULL;
-};
-
-void print_linked_list(node* head) {
-    node *current = head;
-    while (current) {
-        cout << current->value << ", ";
-        current = current->next;
-    }
-    cout <<"\n";
-}
 
 node* insertion_sort_with_middle_tracking(int *array, int n) {
     int l = 0, r = 0;
