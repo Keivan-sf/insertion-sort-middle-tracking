@@ -3,9 +3,9 @@
 #include <sys/time.h>
 #include <chrono>
 #include <ctime>
-#include "middle-tracking.h"
+#include "./middle-tracking/middle-tracking.h"
 #include "linkedlist.h"
-#include "normal-insertion-sort.h"
+#include "./normal-insertion-sort.h"
 
 using namespace std;
 
@@ -41,8 +41,8 @@ int main() {
     srand(date_time_in_ms() % 11);
 
     start = date_time_in_ms();
-    populate_with_perfect_middletracking_input(array, n);
-    /* populate_with_perfect_insertionsort_input(array,n); */
+    /* populate_with_perfect_middletracking_input(array, n); */
+    populate_with_perfect_insertionsort_input(array,n);
     /* populate_with_random_numbers(array, n, 0, 1000000); */
     end = date_time_in_ms();
     cout << "random number geneartion finished in: " << end - start << " ms" << endl;
