@@ -5,6 +5,5 @@
 #include "linkedlist.h"
 
 node* insertion_sort_with_middle_tracking(int *array, int n);
-int* insertion_sort_middle_tracking_with_array(int *array, int n);
 
 #endif
