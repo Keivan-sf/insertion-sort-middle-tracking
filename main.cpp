@@ -5,7 +5,7 @@
 #include <ctime>
 #include "./middle-tracking/middle-tracking.h"
 #include "linkedlist.h"
-#include "./normal-insertion-sort.h"
+#include "./normal-insertion-sort/normal-insertion-sort.h"
 
 using namespace std;
 
@@ -35,8 +35,8 @@ void populate_with_perfect_insertionsort_input(int *array, int n) {
 }
 
 int main() {
-    int array[300000];
-    int n = 300000;
+    int array[30000];
+    int n = 30000;
     int start, end;
     srand(date_time_in_ms() % 11);
 
