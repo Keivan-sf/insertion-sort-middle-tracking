@@ -24,5 +24,3 @@ I've run some clumsy benchmark on my pc with the n of `300,000`
 | Reversed array | 107041 ms             | 13 ms                | 14 ms                                 |
 | Sorted array   | 1 ms                  | 11 ms                | 12 ms                                 |
 | Random array   | 6041 ms               | 6613 ms              | 6614 ms                               |
-
-Notice that there's not much of a difference if the inputs are random.
